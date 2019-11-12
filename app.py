@@ -50,17 +50,17 @@ def labels():
 
 @app.route("/sources/backgrounds/<path:path>/")
 def show_background(path):
-    return {"data": send_from_directory('sources/backgrounds', path)}
+    return send_from_directory('sources/backgrounds', path)
 
 
 @app.route("/sources/labels/<path:path>/")
 def show_labels(path):
-    return {"data": send_from_directory('sources/labels', path)}
+    return send_from_directory('sources/labels', path)
 
 
 @app.route("/temp/<path:path>/")
 def finished_images(path):
-    return {"data": send_from_directory('temp', path)}
+    return send_from_directory('temp', path)
 
 
 @app.route("/api/join_images/", methods=['POST', 'GET'])
