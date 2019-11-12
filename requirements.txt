@@ -1,0 +1,3 @@
+nider
+flask
+uWSGI==2.0.17.1

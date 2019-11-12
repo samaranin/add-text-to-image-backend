@@ -1,0 +1,7 @@
+venv/
+fonts/
+sources/
+temp/
+.idea/
+__pycache__/
+image_processing/__pycache__/

@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: '3'
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    volumes:
+      - "./:/app"
+
+  nginx:
+    restart: always
+    container_name: web-container
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 5000:80
+    depends_on:
+      - flask
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
