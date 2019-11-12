@@ -1,5 +1,6 @@
 from image_processing.image_processing import *
 from flask import Flask, request, send_from_directory
+from flask_cors import CORS
 
 
 BACKGROUNDS_PATH_PREFIX = "sources/backgrounds/"
@@ -24,6 +25,7 @@ FONTS_PATH_PREFIX = "fonts/"
 # joined_images = join_two_images(label_file_path, image_with_text)
 
 app = Flask(__name__, static_url_path='')
+CORS(app)
 
 
 @app.route("/")

@@ -7,6 +7,7 @@
 flask   
 uwsgi   
 nider   
+flask-cors   
 ``` 
 _________________________________________________
 Clone the repository and create next folders   
