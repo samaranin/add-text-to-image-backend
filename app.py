@@ -50,17 +50,17 @@ def labels():
 
 @app.route("/sources/backgrounds/<path:path>/")
 def show_background(path):
-    return send_from_directory('sources/backgrounds', path)
+    return {"data": send_from_directory('sources/backgrounds', path)}
 
 
 @app.route("/sources/labels/<path:path>/")
 def show_labels(path):
-    return send_from_directory('sources/labels', path)
+    return {"data": send_from_directory('sources/labels', path)}
 
 
 @app.route("/temp/<path:path>/")
 def finished_images(path):
-    return send_from_directory('temp', path)
+    return {"data": send_from_directory('temp', path)}
 
 
 @app.route("/api/join_images/", methods=['POST', 'GET'])
@@ -76,7 +76,7 @@ def join_image():
         error = """Invalid request method. 
         Use POST request and next json format: 
         { "image1": "image_with_text", "image2": "label_image", "join": "left" or "right" }"""
-    return {"error": error}
+    return {"data": error}
 
 
 @app.route("/api/write_text/", methods=['POST', 'GET'])
@@ -118,7 +118,7 @@ def write_text():
           "font_name": "font_name", "width": "width", "height": "height", "text_width_header": "text_width_header",
           "font_size_header": "font_size_header", "text_width_paragraph": "text_width_paragraph", 
           "font_size_paragraph": "font_size_paragraph", "font_size_footer": "font_size_footer"}"""
-    return {"error": error}
+    return {"data": error}
 
 
 def validate_json(data, value, default=''):
