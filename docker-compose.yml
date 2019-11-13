@@ -2,6 +2,7 @@
 version: '3'
 services:
   flask:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile-flask
