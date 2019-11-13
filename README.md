@@ -56,7 +56,7 @@ __7. /api/join_images/__ - endpoint to join two images (both must be on server, 
    ```
    {"data": "temp/image.name"}
    ```   
-__7. /api/write_text/__ - endpoint to write text on images (image must be on server)        
+__8. /api/write_text/__ - endpoint to write text on images (image must be on server)        
 &nbsp;&nbsp;&nbsp;&nbsp;a. __GET__ method - returns JSON-error with text and example JSON-scheme      
 &nbsp;&nbsp;&nbsp;&nbsp;b. __POST__ method - gets JSON   
    ```
@@ -78,8 +78,20 @@ __7. /api/write_text/__ - endpoint to write text on images (image must be on ser
    and returns path to generated image   
    ```
    {"data": "temp/image.name"}
+   ```   
+__9. /api/get_image_size/__ - endpoint to get image width and height (must be in sources/labels/ or sources/backgrounds/)      
+&nbsp;&nbsp;&nbsp;&nbsp;a. __GET__ method - returns JSON-error with text and example JSON-scheme   
+&nbsp;&nbsp;&nbsp;&nbsp;b. __POST__ method - gets JSON   
    ```
-   
+   {
+      "image_type": "background or label", 
+      "image_name": "name of image"
+   }   
+   ```
+   and returns path to generated image   
+   ```
+   {"widht": "image width", "height": "image height"}
+   ```   
 ____________________________________________
 #### Run server   
 

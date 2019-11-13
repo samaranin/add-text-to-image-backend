@@ -1,6 +1,7 @@
 from image_processing.image_processing import *
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
+from PIL import Image
 
 
 BACKGROUNDS_PATH_PREFIX = "sources/backgrounds/"
@@ -118,6 +119,24 @@ def write_text():
           "font_name": "font_name", "width": "width", "height": "height", "text_width_header": "text_width_header",
           "font_size_header": "font_size_header", "text_width_paragraph": "text_width_paragraph", 
           "font_size_paragraph": "font_size_paragraph", "font_size_footer": "font_size_footer"}"""
+    return {"data": error}
+
+
+@app.route("/api/get_image_size/", methods=['POST', 'GET'])
+def get_image_size():
+    error = None
+    if request.method == 'POST':
+        data = request.get_json(force=True)
+        image_path = LABELS_PATH_PREFIX if data["image_type"] == "label" else BACKGROUNDS_PATH_PREFIX
+        image_path += data["image_name"]
+        img = Image.open(image_path)
+        width, height = img.size
+        img.close()
+        return  {"width": width, "height": height}
+    else:
+        error = """Invalid request method. 
+            Use POST request and next json format: 
+            { "image_type": "background or label", "image_name": "image_name" }"""
     return {"data": error}
 
 
