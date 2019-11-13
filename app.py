@@ -1,5 +1,5 @@
 from image_processing.image_processing import *
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, send_file
 from flask_cors import CORS
 from PIL import Image
 import os
@@ -46,7 +46,7 @@ def show_labels(path):
 
 @app.route("/temp/<path:path>/")
 def finished_images(path):
-    return send_from_directory('temp', path)
+    return send_file("temp/"+path, as_attachment=True)
 
 
 @app.route("/api/join_images/", methods=['POST', 'GET'])
