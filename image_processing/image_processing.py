@@ -81,6 +81,3 @@ def get_list_of_files(my_path="temp/"):
     files = [f for f in listdir(my_path) if isfile(join(my_path, f))]
     return sorted(files, key=lambda x: str(x.split("-")[0]).lower())
 
-
-def get_image_size_by_name(image_name):
-    return (int(value) for value in image_name.split(".")[0].split("-"))

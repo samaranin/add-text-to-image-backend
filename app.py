@@ -8,23 +8,6 @@ BACKGROUNDS_PATH_PREFIX = "sources/backgrounds/"
 LABELS_PATH_PREFIX = "sources/labels/"
 FONTS_PATH_PREFIX = "fonts/"
 
-# backgrounds = get_list_of_files(backgrounds_path_prefix)
-# labels = get_list_of_files(labels_path_prefix)
-#
-# background_file_path = backgrounds_path_prefix + backgrounds[1]
-# label_file_path = labels_path_prefix + labels[1]
-#
-# width, height = get_image_size_by_name(backgrounds[1])
-# header = "Визначення густини рідин ареометричним методом за допомогою торсійних ваг"
-# paragraph = "Гаврилюк Ю. Ю., Нечипорук А. П."
-#
-# image_with_text = write_image_on_text(
-#     header=header.encode('utf-8').decode('utf-8'),
-#     paragraph=paragraph.encode('utf-8').decode('utf-8'), width=width, height=height,
-#     source_path=background_file_path)
-#
-# joined_images = join_two_images(label_file_path, image_with_text)
-
 app = Flask(__name__, static_url_path='')
 CORS(app)
 
@@ -132,7 +115,7 @@ def get_image_size():
         img = Image.open(image_path)
         width, height = img.size
         img.close()
-        return  {"width": width, "height": height}
+        return {"width": width, "height": height}
     else:
         error = """Invalid request method. 
             Use POST request and next json format: 
