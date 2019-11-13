@@ -47,8 +47,8 @@ __7. /api/join_images/__ - endpoint to join two images (both must be on server, 
 &nbsp;&nbsp;&nbsp;&nbsp;b. __POST__ method - gets JSON   
    ```
    {
-      "image1": "image_with_text", 
-      "image2": "label_image", 
+      "text_image": "image_with_text", 
+      "label_image": "label_image", 
       "join": "left" or "right"
    }   
    ```
@@ -61,7 +61,7 @@ __7. /api/write_text/__ - endpoint to write text on images (image must be on ser
 &nbsp;&nbsp;&nbsp;&nbsp;b. __POST__ method - gets JSON   
    ```
    {
-      "image": "image_to_write_text", // <- must be on server in sources/backgrounds   
+      "background_image": "image_to_write_text", // <- must be on server in sources/backgrounds   
       "header": "header",    
       "paragraph": "paragraph",    
       "footer": "footer",   
