@@ -2,6 +2,8 @@ from image_processing.image_processing import *
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from PIL import Image
+import os
+import shutil
 
 
 BACKGROUNDS_PATH_PREFIX = "sources/backgrounds/"
@@ -121,6 +123,16 @@ def get_image_size():
             Use POST request and next json format: 
             { "image_type": "background or label", "image_name": "image_name" }"""
     return {"data": error}
+
+
+@app.route("/api/remove_temp_files/")
+def remove_temp_files():
+    for root, dirs, files in os.walk('temp/'):
+        for f in files:
+            os.unlink(os.path.join(root, f))
+        for d in dirs:
+            shutil.rmtree(os.path.join(root, d))
+    return {"data": "success"}
 
 
 def validate_json(data, value, default=''):

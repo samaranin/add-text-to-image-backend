@@ -92,6 +92,7 @@ __9. /api/get_image_size/__ - endpoint to get image width and height (must be in
    ```
    {"widht": "image width", "height": "image height"}
    ```   
+__10. /api/remove_temp_files/__ - endpoint clear files in temp/ dir   
 ____________________________________________
 #### Run server   
 
