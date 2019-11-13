@@ -49,7 +49,7 @@ def write_image_on_text(header='',
 
     content = Content(para, header, linkback, padding=60)
 
-    save_path = save_folder + str(datetime.datetime.now()) + '.png'
+    save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
     img = Image(content, width=width, height=height, fullpath=save_path)
 
     img.draw_on_texture(source_path)
@@ -71,7 +71,7 @@ def join_two_images(im1_path, im2_path, save_folder='temp/'):
       new_im.paste(im, (x_offset, 0))
       x_offset += im.size[0]
 
-    save_path = save_folder + '-'.join(str(datetime.datetime.now()).split(' ')) + '.png'
+    save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
     new_im.save(save_path)
 
     return save_path

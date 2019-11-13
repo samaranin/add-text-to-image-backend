@@ -69,18 +69,18 @@ def write_text():
     if request.method == 'POST':
         data = request.get_json(force=True)
 
-        header = validate_json(data, "header", ''),
-        paragraph = validate_json(data, "paragraph", ''),
-        footer = validate_json(data, "footer", ''),
-        font_path = FONTS_PATH_PREFIX + validate_json(data, "font_name", get_list_of_files(FONTS_PATH_PREFIX)[0]),
-        source_path = BACKGROUNDS_PATH_PREFIX + validate_json(data, "background_image", get_list_of_files(BACKGROUNDS_PATH_PREFIX)[0]),
-        width = int(validate_json(data, "width", "960")),
-        height = int(validate_json(data, "height", "960")),
-        text_width_header = int(validate_json(data, "text_width_header", "30")),
-        font_size_header = int(validate_json(data, "font_size_header", "40")),
-        text_width_paragraph = int(validate_json(data, "text_width_paragraph", "30")),
-        font_size_paragraph = int(validate_json(data, "font_size_paragraph", "30")),
-        font_size_footer = int(validate_json(data, "font_size_footer", "30")),
+        header = validate_json(data, "header", '')
+        paragraph = validate_json(data, "paragraph", '')
+        footer = validate_json(data, "footer", '')
+        font_path = FONTS_PATH_PREFIX + validate_json(data, "font_name", get_list_of_files(FONTS_PATH_PREFIX)[0])
+        source_path = BACKGROUNDS_PATH_PREFIX + validate_json(data, "background_image", get_list_of_files(BACKGROUNDS_PATH_PREFIX)[0])
+        width = int(validate_json(data, "width", "960"))
+        height = int(validate_json(data, "height", "960"))
+        text_width_header = int(validate_json(data, "text_width_header", "30"))
+        font_size_header = int(validate_json(data, "font_size_header", "40"))
+        text_width_paragraph = int(validate_json(data, "text_width_paragraph", "30"))
+        font_size_paragraph = int(validate_json(data, "font_size_paragraph", "30"))
+        font_size_footer = int(validate_json(data, "font_size_footer", "30"))
         save_folder = "temp/"
 
         image_path = write_image_on_text(
@@ -124,7 +124,7 @@ def get_image_size():
 
 
 def validate_json(data, value, default=''):
-    return default if value not in data else data[value]
+    return str(default) if value not in data else str(data[value])
 
 
 if __name__ == "__main__":
