@@ -63,16 +63,16 @@ __8. /api/write_text/__ - endpoint to write text on images (image must be on ser
    {
       "background_image": "image_to_write_text", // <- must be on server in sources/backgrounds   
       "header": "header",    
-      "paragraph": "paragraph",    
       "footer": "footer",   
-      "font_name": "font_name",     // <- must be on server in fonts/
       "width": "width",    
       "height": "height",    
+      "header_font_name": "header_font_name",    // <- must be on server in fonts/
       "text_width_header": "text_width_header",  
       "font_size_header": "font_size_header",    
-      "text_width_paragraph": "text_width_paragraph",    
-      "font_size_paragraph": "font_size_paragraph",    
-      "font_size_footer": "font_size_footer"   
+      "footer_font_name": "footer_font_name",   // <- must be on server in fonts/
+      "font_size_footer": "font_size_footer",   
+      "top_padding": "top_padding",   
+      "bottom_padding": "bottom_padding"   
    }   
    ```
    and returns path to generated image   
