@@ -72,38 +72,49 @@ def write_text():
         data = request.get_json(force=True)
 
         header = validate_json(data, "header", '')
-        paragraph = validate_json(data, "paragraph", '')
         footer = validate_json(data, "footer", '')
-        font_path = FONTS_PATH_PREFIX + validate_json(data, "font_name", get_list_of_files(FONTS_PATH_PREFIX)[0])
-        source_path = BACKGROUNDS_PATH_PREFIX + validate_json(data, "background_image", get_list_of_files(BACKGROUNDS_PATH_PREFIX)[0])
+
+        source_path = BACKGROUNDS_PATH_PREFIX + validate_json(data, "background_image",
+                                                              get_list_of_files(BACKGROUNDS_PATH_PREFIX)[0])
+
         width = int(validate_json(data, "width", "960"))
         height = int(validate_json(data, "height", "960"))
+
+        header_font_path = FONTS_PATH_PREFIX + validate_json(data, "header_font_name",
+                                                             get_list_of_files(FONTS_PATH_PREFIX)[0])
         text_width_header = int(validate_json(data, "text_width_header", "30"))
         font_size_header = int(validate_json(data, "font_size_header", "40"))
-        text_width_paragraph = int(validate_json(data, "text_width_paragraph", "30"))
-        font_size_paragraph = int(validate_json(data, "font_size_paragraph", "30"))
+
+        footer_font_path = FONTS_PATH_PREFIX + validate_json(data, "footer_font_name",
+                                                             get_list_of_files(FONTS_PATH_PREFIX)[0])
         font_size_footer = int(validate_json(data, "font_size_footer", "30"))
+
+        top_padding = int(validate_json(data, "top_padding", "200"))
+        bottom_padding = int(validate_json(data, "bottom_padding", "60"))
+
         save_folder = "temp/"
 
         image_path = write_image_on_text(
             header=header.encode('utf-8').decode('utf-8'),
-            paragraph=paragraph.encode('utf-8').decode('utf-8'),
             footer=footer,
-            font_path=font_path,
             source_path=source_path,
             width=width, height=height,
+            header_font_path=header_font_path,
             text_width_header=text_width_header, font_size_header=font_size_header,
-            text_width_paragraph=text_width_paragraph, font_size_paragraph=font_size_paragraph,
+            footer_font_path=footer_font_path,
             font_size_footer=font_size_footer,
-            save_folder=save_folder)
+            save_folder=save_folder,
+            top_padding=top_padding,
+            bottom_padding=bottom_padding)
         return {"data": image_path}
     else:
         error = """Invalid request method. 
         Use POST request and next json format: 
         { "background_image": "image_to_write_text", "header": "header", "paragraph": "paragraph", "footer": "footer",
-          "font_name": "font_name", "width": "width", "height": "height", "text_width_header": "text_width_header",
-          "font_size_header": "font_size_header", "text_width_paragraph": "text_width_paragraph", 
-          "font_size_paragraph": "font_size_paragraph", "font_size_footer": "font_size_footer"}"""
+          "font_name": "font_name", "width": "width", "height": "height", "header_font_name": "header_font_name", 
+          "text_width_header": "text_width_header", "font_size_header": "font_size_header", 
+          "footer_font_name": "footer_font_name", "font_size_footer": "font_size_footer",
+          "top_padding": "top_padding", "bottom_padding": "bottom_padding"}"""
     return {"data": error}
 
 

@@ -15,20 +15,19 @@ from os.path import isfile, join
 
 
 def write_image_on_text(header='',
-                        paragraph='',
                         footer='',
-                        font_path='fonts/Roboto-Regular.ttf',
                         source_path='sources/test.jpg',
                         width=1080, height=1080,
+                        header_font_path='fonts/Roboto-Regular.ttf',
                         text_width_header=30,  font_size_header=40,
-                        text_width_paragraph=30,  font_size_paragraph=30,
+                        footer_font_path='fonts/Roboto-Regular.ttf',
                         font_size_footer=30,
                         save_folder='temp/',
-                        padding=200,
+                        top_padding=200,
                         bottom_padding=140):
     header_text = Header(
         text=header.upper(),
-        font=Font(font_path, font_size_header),
+        font=Font(header_font_path, font_size_header),
         text_width=text_width_header,
         align='center',
         color='#ffffff'
@@ -36,21 +35,21 @@ def write_image_on_text(header='',
 
     para = Paragraph(
         text='',
-        font=Font(font_path, font_size_paragraph),
-        text_width=text_width_paragraph,
+        font=Font(header_font_path, 30),
+        text_width=30,
         align='center',
         color='#ffffff'
     )
 
     linkback = Linkback(
         text='',
-        font=Font(font_path, font_size_footer),
+        font=Font(footer_font_path, font_size_footer),
         align='center',
         color='#ffffff',
         bottom_padding=20
     )
 
-    content = Content(para, header_text, linkback, padding=padding)
+    content = Content(para, header_text, linkback, padding=top_padding)
 
     temp_save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
     img = Image(content, width=width, height=height, fullpath=temp_save_path)
@@ -59,7 +58,7 @@ def write_image_on_text(header='',
 
     header_text = Header(
         text='',
-        font=Font(font_path, font_size_header),
+        font=Font(header_font_path, font_size_header),
         text_width=text_width_header,
         align='center',
         color='#ffffff'
@@ -67,7 +66,7 @@ def write_image_on_text(header='',
 
     linkback = Linkback(
         text=footer,
-        font=Font(font_path, font_size_footer),
+        font=Font(footer_font_path, font_size_footer),
         align='center',
         color='#ffffff',
         bottom_padding=bottom_padding
