@@ -15,44 +15,69 @@ from os.path import isfile, join
 
 
 def write_image_on_text(header='',
-                        paragraph='',
                         footer='',
-                        font_path='fonts/Roboto-Regular.ttf',
                         source_path='sources/test.jpg',
                         width=1080, height=1080,
+                        header_font_path='fonts/Roboto-Regular.ttf',
                         text_width_header=30,  font_size_header=40,
-                        text_width_paragraph=30,  font_size_paragraph=30,
+                        footer_font_path='fonts/Roboto-Regular.ttf',
                         font_size_footer=30,
-                        save_folder='temp/'):
-    header = Header(
+                        save_folder='temp/',
+                        top_padding=200,
+                        bottom_padding=140):
+    header_text = Header(
         text=header.upper(),
-        font=Font(font_path, font_size_header),
+        font=Font(header_font_path, font_size_header),
         text_width=text_width_header,
         align='center',
         color='#ffffff'
     )
 
     para = Paragraph(
-        text=paragraph,
-        font=Font(font_path, font_size_paragraph),
-        text_width=text_width_paragraph,
+        text='',
+        font=Font(header_font_path, 30),
+        text_width=30,
+        align='center',
+        color='#ffffff'
+    )
+
+    linkback = Linkback(
+        text='',
+        font=Font(footer_font_path, font_size_footer),
+        align='center',
+        color='#ffffff',
+        bottom_padding=20
+    )
+
+    content = Content(para, header_text, linkback, padding=top_padding)
+
+    temp_save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
+    img = Image(content, width=width, height=height, fullpath=temp_save_path)
+
+    img.draw_on_texture(source_path)
+
+    header_text = Header(
+        text='',
+        font=Font(header_font_path, font_size_header),
+        text_width=text_width_header,
         align='center',
         color='#ffffff'
     )
 
     linkback = Linkback(
         text=footer,
-        font=Font(font_path, font_size_footer),
+        font=Font(footer_font_path, font_size_footer),
         align='center',
-        color='#ffffff'
+        color='#ffffff',
+        bottom_padding=bottom_padding
     )
 
-    content = Content(para, header, linkback, padding=60)
+    content = Content(para, header_text, linkback, padding=60)
 
     save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
     img = Image(content, width=width, height=height, fullpath=save_path)
 
-    img.draw_on_texture(source_path)
+    img.draw_on_texture(temp_save_path)
 
     return save_path
 
@@ -68,8 +93,8 @@ def join_two_images(im1_path, im2_path, save_folder='temp/'):
 
     x_offset = 0
     for im in images:
-      new_im.paste(im, (x_offset, 0))
-      x_offset += im.size[0]
+        new_im.paste(im, (x_offset, 0))
+        x_offset += im.size[0]
 
     save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
     new_im.save(save_path)
