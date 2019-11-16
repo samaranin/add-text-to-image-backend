@@ -70,6 +70,7 @@ __8. /api/write_text/__ - endpoint to write text on images (image must be on ser
       "text_width_header": "text_width_header",  
       "font_size_header": "font_size_header",    
       "footer_font_name": "footer_font_name",   // <- must be on server in fonts/
+      "text_width_footer": "text_width_footer",   
       "font_size_footer": "font_size_footer",   
       "top_padding": "top_padding",   
       "bottom_padding": "bottom_padding"   
