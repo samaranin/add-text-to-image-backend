@@ -87,7 +87,7 @@ def write_text():
 
         footer_font_path = FONTS_PATH_PREFIX + validate_json(data, "footer_font_name",
                                                              get_list_of_files(FONTS_PATH_PREFIX)[0])
-        text_width_footer = int(validate_json(data, "font_width_footer", "30"))
+        text_width_footer = int(validate_json(data, "text_width_footer", "30"))
         font_size_footer = int(validate_json(data, "font_size_footer", "30"))
 
         top_padding = int(validate_json(data, "top_padding", "200"))
