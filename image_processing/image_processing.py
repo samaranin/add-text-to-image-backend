@@ -21,7 +21,7 @@ def write_image_on_text(header='',
                         header_font_path='fonts/Roboto-Regular.ttf',
                         text_width_header=30,  font_size_header=40,
                         footer_font_path='fonts/Roboto-Regular.ttf',
-                        font_size_footer=30,
+                        font_size_footer=30, text_width_footer=30,
                         save_folder='temp/',
                         top_padding=200,
                         bottom_padding=140):
@@ -35,8 +35,8 @@ def write_image_on_text(header='',
 
     para = Paragraph(
         text='',
-        font=Font(header_font_path, 30),
-        text_width=30,
+        font=Font(footer_font_path, font_size_footer),
+        text_width=text_width_footer,
         align='center',
         color='#ffffff'
     )
@@ -64,20 +64,25 @@ def write_image_on_text(header='',
         color='#ffffff'
     )
 
-    linkback = Linkback(
+    para = Paragraph(
         text=footer,
         font=Font(footer_font_path, font_size_footer),
+        text_width=text_width_footer,
         align='center',
-        color='#ffffff',
-        bottom_padding=bottom_padding
+        color='#ffffff'
     )
 
-    content = Content(para, header_text, linkback, padding=60)
+    content = Content(para, header_text, linkback, padding=bottom_padding)
 
-    save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
-    img = Image(content, width=width, height=height, fullpath=save_path)
+    new_save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
+    img = Image(content, width=width, height=height, fullpath=new_save_path)
 
     img.draw_on_texture(temp_save_path)
+
+    img = Img.open(new_save_path)
+    img = img.crop((0, 0, width, height))
+    save_path = save_folder + ''.join(str(datetime.datetime.now()).split()) + '.png'
+    img.save(save_path)
 
     return save_path
 
