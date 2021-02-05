@@ -100,7 +100,7 @@ ____________________________________________
 To run the app use command  
 
 ```
-docker-copmose up -d
+docker-compose up -d
 ```
 
 and go to the ``localhost:5000``
